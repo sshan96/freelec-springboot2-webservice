@@ -33,7 +33,7 @@ var main = {
             alert(JSON.stringify(error));
         })
     },
-    update : function () {
+    update: function () {
         var data = {
             title: $('#title').val(),
             content: $('#content').val()
@@ -43,7 +43,7 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/posts/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -56,13 +56,13 @@ var main = {
 
     },
 
-    delete : function () {
+    delete: function () {
 
         var id = $('#id').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/posts/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
@@ -71,7 +71,6 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
-
     }
 };
 
