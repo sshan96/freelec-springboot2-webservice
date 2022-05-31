@@ -1,9 +1,7 @@
 language: java
 jdk:
   - openjdk8
-branches:
-  only:
-    - main
+
 
 # Travis CI 서버의 Home
 cache:
@@ -29,6 +27,8 @@ deploy:
     acl: private # zip 파일 접근 private
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deploy: true
+    on:
+     all_branches: true  #해당 라인 추가
 
 
 # CI 실행 완료 시 메일로 알람
