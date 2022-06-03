@@ -1,5 +1,4 @@
 language: java
-sudo: required
 jdk:
   - openjdk8
 # Travis CI 서버의 Home
@@ -9,12 +8,13 @@ cache:
     - '$HOME/.gradle'
 
 before_install:             #before_install 을 추가해줘야한다.
-  - sudo apt-get install -y openjdk-8-jdk
-  - sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   - chmod +x gradlew
-
+  - sudo apt install -y openjdk-8-jdk
+  - sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 script:
-  - jdk_switcher use openjdk8
+  - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+  - export PATH=$JAVA_HOME/bin:$PATH
+  - java -version
   - "./gradlew clean build"
 
 before_deploy:
