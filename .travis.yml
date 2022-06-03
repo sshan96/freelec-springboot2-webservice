@@ -8,6 +8,7 @@ cache:
     - '$HOME/.gradle'
 
 before_install:             #before_install 을 추가해줘야한다.
+  - export PATH=$JAVA_HOME/bin:$PATH
   - chmod +x gradlew
 
 script: "./gradlew clean build"
