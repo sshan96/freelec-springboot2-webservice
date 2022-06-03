@@ -9,13 +9,8 @@ cache:
 
 before_install:             #before_install 을 추가해줘야한다.
   - chmod +x gradlew
-  - sudo apt install -y openjdk-8-jdk
-  - sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
-script:
-  - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-  - export PATH=$JAVA_HOME/bin:$PATH
-  - java -version
-  - "./gradlew clean build"
+
+script: "./gradlew clean build"
 
 before_deploy:
   - mkdir -p before-deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성
@@ -50,7 +45,7 @@ deploy:
     region: ap-northeast-2
     wait-until-deployed: true
     on:
-      all_branches: true  #해당 라인 추가
+     all_branches: true  #해당 라인 추가
 
 # CI 실행 완료 시 메일로 알람
 notifications:
