@@ -1,6 +1,6 @@
 language: java
+sudo: required
 jdk:
-  - oraclejdk8
   - openjdk8
 # Travis CI 서버의 Home
 cache:
