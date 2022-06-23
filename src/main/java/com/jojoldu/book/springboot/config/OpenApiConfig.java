@@ -14,7 +14,7 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI openAPI(@Value("${springdoc.version}") String appVersion) {
-        Info info = new Info().title("Demo API").version(appVersion)
+        Info info = new Info().title("Spring Boot AWS API").version(appVersion)
                 .description("Spring Boot AWS 웹 서비스 API입니다.")
                 .termsOfService("http://swagger.io/terms/")
                 .contact(new Contact().name("sshan96").url("https://www.naver.com/").email("sshan96@naver.com"))
