@@ -11,13 +11,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customOAuth2UserService;
 
+    private static final String[] PERMIT_ALL_URL_ARRAY = {
+            "/",
+            "/css/**",
+            "/images/**",
+            "/js/**",
+            "/h2-console/**",
+            "/profile",
+    };
+
+    private static final String[] PERMIT_USER_URL_ARRAY = {
+            "/api/v1/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable().headers().frameOptions().disable().and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .antMatchers(PERMIT_ALL_URL_ARRAY).permitAll()
+                .antMatchers(PERMIT_USER_URL_ARRAY).hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()
