@@ -13,12 +13,12 @@ public class UsersApiController {
     private final AdminService adminService;
 
 
-    @PutMapping("/api/v1/users/{id}")
+    @PutMapping("/api/admin/users/{id}")
     public Long update(@PathVariable Long id, @RequestBody UsersUpdateRequestDto requestDto) {
         return  adminService.update(id, requestDto);
     }
 
-    @GetMapping("api/v1/users/{id}")
+    @GetMapping("api/admin/users/{id}")
     public UsersResponseDto findById(@PathVariable Long id) {
         return adminService.findById(id);
     }

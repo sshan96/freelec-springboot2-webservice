@@ -60,7 +60,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void Posts_등록된다() throws Exception {
         //given
         String title = "title";
@@ -71,7 +71,7 @@ public class PostsApiControllerTest {
                 .author("author")
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts";
+        String url = "http://localhost:" + port + "/api/user/posts";
 
         //when
         mvc.perform(post(url)
@@ -85,7 +85,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void Posts_수정된다() throws Exception {
         //given
         Posts savePosts = postsRepository.save(Posts.builder()
@@ -103,7 +103,7 @@ public class PostsApiControllerTest {
                 .content(expectedContent)
                 .build();
 
-        String url = "http://localhost:" + port + "api/v1/posts/" + updateId;
+        String url = "http://localhost:" + port + "api/user/posts/" + updateId;
 
         //when
         mvc.perform(put(url)

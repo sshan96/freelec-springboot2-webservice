@@ -7,6 +7,8 @@
             {{#userName}}
                 Logged in as: <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                <a href="/swagger-ui" class="btn btn-secondary active" role="button">Swagger UI</a>
+                <a href="/admin" class="btn btn-secondary active" role="button">관리자 페이지</a>
             {{/userName}}
             {{^userName}}
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>

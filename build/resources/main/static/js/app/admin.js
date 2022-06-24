@@ -25,7 +25,7 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/admin/users/' + id,
+            url: '/api/v1/users/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -44,7 +44,7 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/admin/users/' + id,
+            url: '/api/v1/users/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {

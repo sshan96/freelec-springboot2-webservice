@@ -21,23 +21,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     private static final String[] PERMIT_USER_URL_ARRAY = {
-            "/api/v1/posts",
-            "/api/v1/posts/**",
-            "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/admin"
+            "/api/user/**",
+            "/v3/api-docs/**",
+            "/users/**"
     };
 
     private static final String[] PERMIT_ADMIN_URL_ARRAY = {
-            "/swagger-ui/**",
-            "/swagger-ui.html",
-            "/api/v1/posts",
-            "/api/v1/posts/**",
-            "/v3/api-docs/**",
-            "/api/v1/users",
-            "/api/v1/users/**",
-            "/admin"
+            "/api/admin/**",
+            "/admin/**"
     };
 
     @Override
@@ -45,9 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable().headers().frameOptions().disable().and()
                 .authorizeRequests()
-                .antMatchers(PERMIT_ALL_URL_ARRAY).permitAll()
-                .antMatchers(PERMIT_USER_URL_ARRAY).hasRole(Role.USER.name())
                 .antMatchers(PERMIT_ADMIN_URL_ARRAY).hasRole(Role.ADMIN.name())
+                .antMatchers(PERMIT_USER_URL_ARRAY).hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers(PERMIT_ALL_URL_ARRAY).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

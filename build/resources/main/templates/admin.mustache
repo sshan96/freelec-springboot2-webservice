@@ -1,0 +1,35 @@
+{{>layout/header}}
+<h1>관리자 페이지</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/" role="button" class="btn btn-primary">홈</a>
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>번호</th>
+            <th>이메일</th>
+            <th>이름</th>
+            <th>권한</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#users}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/users/update/{{id}}">{{email}}</a></td>
+                <td>{{name}}</td>
+                <td>{{role}}</td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/users}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}
