@@ -17,14 +17,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/images/**",
             "/js/**",
             "/h2-console/**",
-            "/profile",
+            "/profile"
     };
 
     private static final String[] PERMIT_USER_URL_ARRAY = {
-            "/api/v1/**",
+            "/api/v1/posts",
+            "/api/v1/posts/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/swagger-ui.html"
+            "/swagger-ui.html",
+            "/admin"
+    };
+
+    private static final String[] PERMIT_ADMIN_URL_ARRAY = {
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/api/v1/posts",
+            "/api/v1/posts/**",
+            "/v3/api-docs/**",
+            "/api/v1/users",
+            "/api/v1/users/**",
+            "/admin"
     };
 
     @Override
@@ -34,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(PERMIT_ALL_URL_ARRAY).permitAll()
                 .antMatchers(PERMIT_USER_URL_ARRAY).hasRole(Role.USER.name())
+                .antMatchers(PERMIT_ADMIN_URL_ARRAY).hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()

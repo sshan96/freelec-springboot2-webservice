@@ -26,6 +26,16 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/swagger-ui")
+    public String swaaggerUi(Model model, @LoginUser SessionUser user) {
+
+        if (user == null) {
+            return "index";
+        } else {
+            return "swagger-ui.html";
+        }
+    }
+
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
@@ -39,4 +49,6 @@ public class IndexController {
 
         return "posts-update";
     }
+
+
 }
